@@ -28,6 +28,23 @@ public class Run {
         session.getTransaction().commit();
 
 
+//        UPDATE
+        session.beginTransaction();
+        Person person2 = new Person();
+
+        person2.setId(1);
+        person2.setName("hasan");
+        person2.setLastname("hüsyein");
+        person2.setCreatedate(new Date());
+        person2.setAge(22);
+
+        session.update(person2);
+        session.getTransaction().commit();
+
+
+
+
+
     }
 
 }
