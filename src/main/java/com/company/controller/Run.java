@@ -5,6 +5,7 @@ import com.company.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by root on 6/28/15.
@@ -32,7 +33,7 @@ public class Run {
         session.beginTransaction();
         Person person2 = new Person();
 
-        person2.setId(2);
+        person2.setId(3);
         person2.setName("hasan");
         person2.setLastname("hüsyein");
         person2.setCreatedate(new Date());
@@ -45,12 +46,23 @@ public class Run {
 //        DELETE
         session.beginTransaction();
 
-        Person person3 = (Person) session.load(Person.class, 2);
+        Person person3 = (Person) session.load(Person.class, 4);
 
         session.delete(person3);
         session.getTransaction().commit();
 
 
+//        LIST
+        List<Person> result = (List<Person>) session.createQuery("from Person").list();
+
+        int i = 0;
+        for (Person res : result) {
+            System.out.println(i + ". name : " + res.getName() + " --- lastname:" + res.getLastname() + " -- age:" + res.getAge() + "  --- date: " + res.getCreatedate());
+            i++;
+        }
+
+
     }
+
 
 }
