@@ -32,7 +32,7 @@ public class Run {
         session.beginTransaction();
         Person person2 = new Person();
 
-        person2.setId(1);
+        person2.setId(2);
         person2.setName("hasan");
         person2.setLastname("hüsyein");
         person2.setCreatedate(new Date());
@@ -42,7 +42,13 @@ public class Run {
         session.getTransaction().commit();
 
 
+//        DELETE
+        session.beginTransaction();
 
+        Person person3 = (Person) session.load(Person.class, 2);
+
+        session.delete(person3);
+        session.getTransaction().commit();
 
 
     }
